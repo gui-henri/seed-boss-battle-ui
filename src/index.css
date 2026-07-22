@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+body {
+  background-color: #090D16;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(124, 58, 237, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(0, 230, 118, 0.12) 0px, transparent 50%);
+  background-attachment: fixed;
+}
+
+.font-mono-custom {
+  font-family: 'Space Grotesk', monospace;
+}
