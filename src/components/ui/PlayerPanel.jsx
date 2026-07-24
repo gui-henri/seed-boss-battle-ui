@@ -13,12 +13,16 @@ export default function PlayerPanel({
 }) {
   // Definir nome do jogador
   // Cooldown do ataque
+   const [playerName, setPlayerName] = useState('Dev Seedeiro');
+   const [isAttacking, setIsAttacking] = useState(false);
 
   const manaPercentage = Math.min(100, Math.round((mana / 50) * 100));
   const isManaFull = mana >= 50;
   const isCriticalNext = combo === 9; // Próximo golpe (10º) será o crítico
 
   const handleBasicAttackClick = async () => {
+    setIsAttacking(true);
+    setTimeout(()=> setIsAttacking(false), 150)
   };
 
   const handleSpecialAttackClick = async () => {
@@ -32,11 +36,13 @@ export default function PlayerPanel({
           <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">
             <User className="w-4 h-4" />
           </div>
-          <span className="text-xs font-bold text-slate-300">Seu Nome:</span>
+          <span className="text-xs font-bold text-slate-300">Seu Nome:{playerName}</span>
         </div>
 
         {/* Inut para o nome do jogador */}
         <input
+          value={playerName}
+          onChange={(e) => setPlayerName(e.target.value)}
           type="text"
           placeholder="Digite seu nome..."
           className="bg-slate-950 border border-slate-700/80 text-white rounded-lg px-3 py-1 text-xs font-semibold focus:outline-none focus:border-emerald-500 w-44 transition-colors"
@@ -91,13 +97,14 @@ export default function PlayerPanel({
 
       <div className="grid grid-cols-2 gap-3 pt-1">
         <button
+          onClick={handleBasicAttackClick}
           className={`flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg font-bold text-xs transition-all ${isCriticalNext
             ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 shadow-md shadow-amber-500/20 animate-bounce'
             : 'bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 shadow-md shadow-emerald-500/20 active:scale-95'
             }`}
         >
           {/* Adicionar spin apenas durante ataque */}
-          <Sword className={`w-4 h-4 'animate-spin'`} />
+          <Sword className={`w-4 h-4 ${isAttacking ? 'animate-spin' : ' '}`} />
           {isCriticalNext ? '💥 CRÍTICO! (20)' : '⚔️ ATAQUE (3)'}
         </button>
 

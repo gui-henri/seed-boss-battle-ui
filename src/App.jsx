@@ -9,6 +9,7 @@ export default function App() {
   const { boss } = useBossState();
 
   // ✏️ Hook
+ 
 
   return (
     <div className="min-h-screen py-4 px-4 max-w-xl mx-auto flex flex-col justify-between space-y-4">
@@ -28,6 +29,7 @@ export default function App() {
 
       <main className="space-y-4">
         <BossScreen boss={boss} />
+        <PlayerPanel/>
       </main>
 
       <footer className="text-center text-[10px] text-slate-500 pt-2 border-t border-slate-900">
