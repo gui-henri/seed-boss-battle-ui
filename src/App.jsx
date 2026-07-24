@@ -32,6 +32,7 @@ export default function App() {
         <BossScreen boss={boss} />
         <PlayerPanel
           realizarAtaqueBasico={realizarAtaque}
+          combo = {combo}
         />
       </main>
 
