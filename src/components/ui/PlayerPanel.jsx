@@ -22,6 +22,9 @@ export default function PlayerPanel({
 
   const handleBasicAttackClick = async () => {
     setIsAttacking(true);
+    if(realizarAtaqueBasico){
+      await realizarAtaqueBasico(playerName)
+    }
     setTimeout(()=> setIsAttacking(false), 150)
   };
 

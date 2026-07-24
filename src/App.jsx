@@ -3,13 +3,14 @@ import BossScreen from './components/ui/BossScreen';
 import PlayerPanel from './components/ui/PlayerPanel';
 import { useBossState } from './api/socket';
 import { useJogadorCombat } from './hooks/useJogadorCombat';
+import { useComboAtaque } from './hooks/useComboAtaque';
 
 export default function App() {
   // 🔒 Conexão WebSocket com o Boss (Não mexer)
   const { boss } = useBossState();
 
   // ✏️ Hook
- 
+  const{combo, realizarAtaque} = useComboAtaque()
 
   return (
     <div className="min-h-screen py-4 px-4 max-w-xl mx-auto flex flex-col justify-between space-y-4">
@@ -29,7 +30,9 @@ export default function App() {
 
       <main className="space-y-4">
         <BossScreen boss={boss} />
-        <PlayerPanel/>
+        <PlayerPanel
+          realizarAtaqueBasico={realizarAtaque}
+        />
       </main>
 
       <footer className="text-center text-[10px] text-slate-500 pt-2 border-t border-slate-900">

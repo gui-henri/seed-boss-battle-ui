@@ -19,11 +19,18 @@ import { enviarAtaqueAoBoss } from '../api/bossService';
  */
 export function useComboAtaque() {
   // TODO
-  const combo = 0;
+  const [combo, setCombo] = useState(0);
 
   const realizarAtaque = async (player = 'Dev Seedeiro') => {
-    // TODO: Implementar lógica de combo
-    await enviarAtaqueAoBoss(1, player);
+  const novoValor = combo + 1 
+  if (novoValor === 10 ){
+    await enviarAtaqueAoBoss(novoValor, player)
+    setCombo(0)
+  }
+  else{
+    await enviarAtaqueAoBoss(novoValor, player)
+    setCombo(novoValor)
+  }
   };
 
   return { combo, realizarAtaque };
